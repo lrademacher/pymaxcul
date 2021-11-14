@@ -45,7 +45,7 @@ from maxcul._const import (
     EVENT_SHUTTER_UPDATE, EVENT_PUSH_BUTTON_UPDATE,
     ATTR_DEVICE_ID, ATTR_DESIRED_TEMPERATURE, ATTR_MEASURED_TEMPERATURE,
     ATTR_MODE, ATTR_BATTERY_LOW, ATTR_DEVICE_TYPE, ATTR_DEVICE_SERIAL,
-    ATTR_FIRMWARE_VERSION, ATTR_STATE
+    ATTR_FIRMWARE_VERSION, ATTR_STATE, ATTR_VALVE_POSITION
 )
 
 # local constants
@@ -331,6 +331,7 @@ class MaxConnection(threading.Thread):
             ATTR_DEVICE_ID: msg.sender_id,
             ATTR_MEASURED_TEMPERATURE: msg.measured_temperature,
             ATTR_DESIRED_TEMPERATURE: msg.desired_temperature,
+            ATTR_VALVE_POSITION: msg.valve_position,
             ATTR_MODE: msg.mode,
             ATTR_BATTERY_LOW: msg.battery_low
 
