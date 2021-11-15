@@ -6,6 +6,8 @@ import time
 import logging
 from serial import Serial, SerialException
 
+from ._telnet import TelnetSerial, TelnetException
+
 LOGGER = logging.getLogger(__name__)
 
 MAX_QUEUED_COMMANDS = 10
@@ -137,6 +139,12 @@ class CulIoThread(threading.Thread):
             self._stop_requested.set()
 
     def _open_serial_device(self):
+        if self._device_path.startswith("telnet://"):
+            return self._open_telnet_connection()
+        else:
+            return self._open_serial_port()
+
+    def _open_serial_port(self):
         try:
             self._com_port = Serial(
                 self._device_path,
@@ -145,6 +153,22 @@ class CulIoThread(threading.Thread):
         except SerialException as err:
             LOGGER.error("Unable to open serial device <%s>", err)
             return False
+
+        return self._initialize_serial_device()
+
+    def _open_telnet_connection(self):
+        try:
+            self._com_port = TelnetSerial(
+                self._device_path,
+                timeout=READLINE_TIMEOUT
+            )
+        except TelnetException as err:
+            LOGGER.error("Unable to open telnet connection <%s>", err)
+            return False
+
+        return self._initialize_serial_device()
+
+    def _initialize_serial_device(self):
         # was required for my nanoCUL
         time.sleep(2)
         # get CUL FW version
