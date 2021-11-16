@@ -4,7 +4,7 @@ from urllib.parse import urlparse
 
 class TelnetSerial:
 
-    def __init__(self, device_path, timeout):
+    def __init__(self, device_path, timeout=None):
         parsed_device_path = urlparse(device_path)
 
         try:
