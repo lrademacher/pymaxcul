@@ -259,13 +259,13 @@ class ConfigWeekProfileMessage(MoritzMessage):
 
 
 class ConfigTemperaturesMessage(MoritzMessage):
-    """Sets temperatur config"""
+    """Sets temperature config"""
     comfort_Temperature = 0
     eco_Temperature = 0
     max_Temperature = 0
     min_Temperature = 0
     measurement_Offset = 0
-    window_open_Temperature = 0
+    window_Open_Temperature = 0
     window_Open_Duration = 0
 
     @staticmethod
@@ -311,9 +311,9 @@ class ConfigTemperaturesMessage(MoritzMessage):
         if self.measurement_Offset is None:
             raise MissingPayloadParameterError(
                 "Missing measurement_Offset in payload")
-        if self.window_Open_Temperatur is None:
+        if self.window_Open_Temperature is None:
             raise MissingPayloadParameterError(
-                "Missing window_Open_Temperatur in payload")
+                "Missing window_Open_Temperature in payload")
         if self.window_Open_Duration is None:
             raise MissingPayloadParameterError(
                 "Missing window_Open_Duration in payload")
