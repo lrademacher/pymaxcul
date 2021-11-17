@@ -232,7 +232,7 @@ class CulIoThread(threading.Thread):
     def _readline(self):
         try:
             line = self._com_port.readline()
-            line = line.decode('utf-8')[:-2]
+            line = line.decode('utf-8').strip()
             if line:
                 return line
             return None
