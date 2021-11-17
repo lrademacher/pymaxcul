@@ -236,6 +236,8 @@ class MaxConnection(threading.Thread):
 
     def _handle_message(self, msg, signal_strenth):
         """Internal function to respond to incoming messages where appropriate"""
+        LOGGER.debug("Received message %s (%d)", msg, signal_strenth)
+
         if msg.receiver_id != 0 and msg.receiver_id != self.sender_id:
             # discard messages not addressed to us
             return
@@ -276,8 +278,6 @@ class MaxConnection(threading.Thread):
         if msg.receiver_id == 0 and msg.sender_id not in self._paired_devices:
             # discard broadcast messages from devices we are not paired with
             return
-
-        LOGGER.debug("Received message %s (%d)", msg, signal_strenth)
 
         if isinstance(msg, TimeInformationMessage):
             if not msg.datetime:
