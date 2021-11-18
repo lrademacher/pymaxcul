@@ -160,7 +160,7 @@ class CulIoThread(threading.Thread):
         try:
             self._com_port = TelnetSerial(
                 self._device_path,
-                timeout=READLINE_TIMEOUT
+                timeout=0.5
             )
         except TelnetException as err:
             LOGGER.error("Unable to open telnet connection <%s>", err)
