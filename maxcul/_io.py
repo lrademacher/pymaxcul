@@ -220,7 +220,7 @@ class CulIoThread(threading.Thread):
             LOGGER.debug("Writing command %s", command)
         try:
             self._com_port.write((command + "\r\n").encode())
-        except SerialException as err:
+        except (SerialException, TelnetException) as err:
             LOGGER.error(
                 "Error writing to serial device <%s>. Try reopening it.", err)
             if self._reopen_serial_device():
@@ -236,7 +236,7 @@ class CulIoThread(threading.Thread):
             if line:
                 return line
             return None
-        except SerialException as err:
+        except (SerialException, TelnetException) as err:
             LOGGER.error(
                 "Error reading from serial device <%s>. Try reopening it.", err)
             if self._reopen_serial_device():

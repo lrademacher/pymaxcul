@@ -21,10 +21,18 @@ class TelnetSerial:
         self._telnet.close()
 
     def readline(self):
-        return self._telnet.read_until(b'\n', timeout=self._timeout)
+        try:
+            return self._telnet.read_until(b'\n', timeout=self._timeout)
+        except:
+            # TODO: improve error handling
+            raise TelnetException()
 
     def write(self, data):
-        self._telnet.write(data)
+        try:
+            self._telnet.write(data)
+        except:
+            # TODO: improve error handling
+            raise TelnetException()
 
 
 class TelnetException(IOError):
