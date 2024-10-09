@@ -3,7 +3,7 @@ from setuptools import setup
 import io
 import os
 
-import maxcul
+from maxcul import __version__
 
 here = os.path.abspath(os.path.dirname(__file__))
 
@@ -23,7 +23,7 @@ long_description = read('README.md')
 
 setup(
     name='pymaxcul',
-    version=maxcul.__version__,
+    version=__version__,
     url='https://github.com/maufl/pymaxcul',
     license='BSD License',
     author='Markus Ullmann, Karl Wolffgang, Felix Maurer',
