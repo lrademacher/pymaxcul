@@ -35,5 +35,3 @@ from maxcul._exceptions import (
     UnknownMessageError,
     LengthNotMatchingError,
     MissingPayloadParameterError)
-
-__version__ = "0.1.13"
