@@ -1,9 +1,7 @@
 from setuptools import setup
-from setuptools.command.test import test as testcommand
 
 import io
 import os
-import sys
 
 import maxcul
 
@@ -23,18 +21,6 @@ def read(*filenames, **kwargs):
 long_description = read('README.md')
 
 
-class PyTest(testcommand):
-    def finalize_options(self):
-        testcommand.finalize_options(self)
-        self.test_args = []
-        self.test_suite = True
-
-    def run_tests(self):
-        import pytest
-        errcode = pytest.main(self.test_args)
-        sys.exit(errcode)
-
-
 setup(
     name='pymaxcul',
     version=maxcul.__version__,
@@ -43,7 +29,6 @@ setup(
     author='Markus Ullmann, Karl Wolffgang, Felix Maurer',
     tests_require=['pytest>=3.0.5'],
     install_requires=['pyserial>=3.1.1'],
-    cmdclass={'test': PyTest},
     author_email='github@maufl.de',
     description='Talk to eq-3 MAX! devices using a CUL stick',
     long_description=long_description,
