@@ -302,7 +302,7 @@ class MaxConnection(threading.Thread):
             self._send_ack(msg)
             self._propagate_push_button_state(msg)
 
-        elif isinstance(msg, WallThermostatStateMessage, SetTemperatureMessage, WallThermostatControlMessage):
+        elif isinstance(msg, (WallThermostatStateMessage, SetTemperatureMessage, WallThermostatControlMessage)):
             self._send_ack(msg)
 
         else:

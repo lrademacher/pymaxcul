@@ -22,7 +22,7 @@ long_description = read('README.md')
 
 setup(
     name='pymaxcul',
-    version='0.1.14',
+    version='0.1.15',
     url='https://github.com/maufl/pymaxcul',
     license='BSD License',
     author='Markus Ullmann, Karl Wolffgang, Felix Maurer',
